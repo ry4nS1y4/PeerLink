@@ -1,0 +1,114 @@
+Screen {
+    layout: vertical;
+    background: #080800;
+}
+
+TabbedContent {
+    height: 1fr;
+}
+
+TabPane {
+    padding: 1 2;
+    layout: vertical;
+}
+
+.section_title {
+    padding: 0 1;
+    text-style: bold;
+    color: #ffee00;
+    margin-top: 1;
+}
+
+/* ── Status tab ─────────────────────────────────── */
+
+#status_panel {
+    height: auto;
+    padding: 1;
+    margin-bottom: 1;
+    border: round #ffee00;
+    background: #0d0d00;
+}
+
+#catalog_table {
+    height: 1fr;
+    min-height: 6;
+}
+
+/* ── Peers tab ──────────────────────────────────── */
+
+HeartbeatMonitor {
+    height: 8;
+    border: round #00eeff;
+    padding: 1 2;
+    background: #00100d;
+    margin-bottom: 1;
+}
+
+#peers_table {
+    height: 1fr;
+    min-height: 6;
+    margin-bottom: 1;
+}
+
+#peer_detail_panel {
+    height: auto;
+    min-height: 8;
+    padding: 1;
+    margin-bottom: 1;
+    border: round #ffee00;
+    background: #0d0d00;
+}
+
+/* ── Search tab ─────────────────────────────────── */
+
+#results_table {
+    height: 1fr;
+    min-height: 6;
+}
+
+/* ── Downloads tab ──────────────────────────────── */
+
+#downloads_table {
+    height: 1fr;
+    min-height: 6;
+}
+
+/* ── Activity tab ───────────────────────────────── */
+
+#log_panel {
+    height: 1fr;
+    min-height: 6;
+    border: round #ffee00;
+    padding: 0 1;
+    background: #0a0900;
+}
+
+/* ── Shared hint text ───────────────────────────── */
+
+#peers_hint,
+#results_hint,
+#downloads_hint {
+    color: #555500;
+    margin: 0 1 1 1;
+}
+
+/* ── Command input ──────────────────────────────── */
+
+#command_input {
+    dock: bottom;
+    margin: 0 1 1 1;
+}
+
+#command_input:focus {
+    border: round #ffee00;
+}
+
+/* ── Tables ─────────────────────────────────────── */
+
+DataTable {
+    background: #080800;
+}
+
+DataTable:focus {
+    border: round #ffee00;
+}

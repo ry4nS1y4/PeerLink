@@ -1,0 +1,61 @@
+# =============================================================================
+# Docker Compose - Development Environment
+# =============================================================================
+# Customize for your tech stack.
+# =============================================================================
+
+version: '3.8'
+
+services:
+  # ---------------------------------------------------------------------------
+  # Application Service
+  # ---------------------------------------------------------------------------
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/appdb
+      - ENVIRONMENT=development
+    volumes:
+      - ./src:/app/src  # Hot reload for development
+    depends_on:
+      - db
+    # Uncomment for Node.js:
+    # command: npm run dev
+
+  # ---------------------------------------------------------------------------
+  # Database Service
+  # ---------------------------------------------------------------------------
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=appdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # ---------------------------------------------------------------------------
+  # Message Broker (uncomment if needed)
+  # ---------------------------------------------------------------------------
+  # rabbitmq:
+  #   image: rabbitmq:3-management
+  #   ports:
+  #     - "5672:5672"   # AMQP
+  #     - "15672:15672" # Management UI
+  #   environment:
+  #     - RABBITMQ_DEFAULT_USER=guest
+  #     - RABBITMQ_DEFAULT_PASS=guest
+
+  # redis:
+  #   image: redis:7
+  #   ports:
+  #     - "6379:6379"
+
+volumes:
+  postgres_data:

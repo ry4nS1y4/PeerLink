@@ -1,0 +1,8 @@
+black==26.1.0
+pytest==9.0.2
+pytest-cov==7.0.0
+ruff==0.15.4
+aiofiles==25.1.0
+cryptography==46.0.5 
+keyring==25.7.0
+textual>=0.80.0

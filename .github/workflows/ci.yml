@@ -1,0 +1,81 @@
+# =============================================================================
+# CI Pipeline
+# =============================================================================
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ---------------------------
+      # Checkout code
+      # ---------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ---------------------------
+      # Set up language runtime
+      # ---------------------------
+      # PYTHON EXAMPLE:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      # ---------------------------
+      # Install dependencies
+      # ---------------------------
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      # ---------------------------
+      # Lint and format check
+      # ---------------------------
+      - name: Lint with ruff
+        run: ruff check src/
+
+      - name: Check formatting
+        run: black --check src/
+
+      # ---------------------------
+      # Run tests with coverage
+      # ---------------------------
+      - name: Run tests
+        run: |
+          PYTHONPATH=. pytest tests/ --cov=src --cov-report=xml --cov-report=html --cov-fail-under=0
+
+      # ---------------------------
+      # Upload coverage report
+      # ---------------------------
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: |
+            htmlcov/
+            coverage.xml
+          retention-days: 14
+
+  # ---------------------------
+  # Build Docker image (optional)
+  # ---------------------------
+  # docker-build:
+  #   runs-on: ubuntu-latest
+  #   needs: build-and-test
+  #
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #
+  #     - name: Build Docker image
+  #       run: docker build -t ${{ github.repository }}:${{ github.sha }} .
