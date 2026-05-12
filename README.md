@@ -1,5 +1,12 @@
 # Peer-to-Peer File Sharing System
 
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
+![asyncio](https://img.shields.io/badge/asyncio-grey?logo=python&logoColor=white)
+![Textual](https://img.shields.io/badge/Textual-TUI-008080)
+![TCP](https://img.shields.io/badge/TCP-Networking-orange)
+![UDP](https://img.shields.io/badge/UDP-Discovery-orange)
+![SHA256](https://img.shields.io/badge/SHA--256-Integrity-green)
+
 A decentralized file sharing system built in Python. Peers discover each other autonomously, negotiate connections over a local network or localhost, search for files using a Gnutella-inspired flood search with TTL and UUID-based deduplication, and transfer files directly — no central server required.
 
 > **Origin:** This project was originally developed as part of **SWE4403/CS4015 — Software Architecture & Design Patterns** at the **University of New Brunswick** (Winter 2026) by a team of four students. With permission from the course instructor, I have taken over the repository for continued development and maintenance beyond the course.
